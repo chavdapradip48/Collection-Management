@@ -23,14 +23,13 @@ public class UserServiceImpl implements UserService {
     private ModelMapper modelMapper;
 
     @Override
-    public User createUser(UserDTO userDTO) {
-
+    public UserDTO createUser(UserDTO userDTO) {
         User userToSave = modelMapper.map(userDTO, User.class);
-        return userRepository.save(userToSave);
+        return userEntityToDTO(userToSave);
     }
 
     @Override
-    public User updateUser(UserDTO userDTO) throws Exception {
+    public UserDTO updateUser(UserDTO userDTO) throws Exception {
 
         if(userDTO.getId() == null || userDTO.getId() == 0) throw new BadRequestException("Please enter the user Id.");
 
@@ -40,23 +39,27 @@ public class UserServiceImpl implements UserService {
         userFromDB.setMobile(userDTO.getMobile());
         userFromDB.setPassword(userDTO.getPassword());
 
-        return userRepository.save(userFromDB);
+        return userEntityToDTO(userRepository.save(userFromDB));
     }
 
     @Override
-    public User getUser(long userId) {
-        return userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("The user with ID 1 does not exist."));
+    public UserDTO getUser(long userId) {
+        return userEntityToDTO(userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("The user with ID 1 does not exist.")));
     }
 
     @Override
-    public User deleteUser(long userId) {
-        User userFromDB = getUser(userId);
+    public UserDTO deleteUser(long userId) {
+        User userFromDB = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("The user with ID 1 does not exist."));
         userRepository.delete(userFromDB);
-        return userFromDB;
+        return userEntityToDTO(userFromDB);
     }
 
     @Override
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public List<UserDTO> getUsers() {
+        return userRepository.findAll().stream().map(this::userEntityToDTO).toList();
+    }
+
+    private UserDTO userEntityToDTO(User user) {
+        return modelMapper.map(user, UserDTO.class);
     }
 }

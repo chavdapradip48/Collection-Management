@@ -9,10 +9,9 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO extends AuditableDTO<String> {
-    private Long id;
-    private String name;
-    private String email;
-    private Long mobile;
-    private String password;
+public class AuditableDTO<U> {
+    private U createdBy;
+    private U lastModifiedBy;
+    private LocalDateTime createdDate;
+    private LocalDateTime lastModifiedDate;
 }

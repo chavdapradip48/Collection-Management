@@ -2,14 +2,13 @@ package com.pradip.collection_management.controller;
 
 import com.pradip.collection_management.dto.ApiResponse;
 import com.pradip.collection_management.dto.RoleDTO;
-import com.pradip.collection_management.dto.UserDTO;
 import com.pradip.collection_management.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import static com.pradip.collection_management.MessageConstants.*;
+import static com.pradip.collection_management.constant.MessageConstants.*;
 
 @RestController
 @RequestMapping("/api/v1/roles")
@@ -20,7 +19,7 @@ public class RoleController {
 
     @GetMapping
     public ResponseEntity<ApiResponse<Object>> getRoles() {
-        return ResponseEntity.ok(new ApiResponse<Object>(HttpStatus.OK,ROLES+CREATED_MESSAGE,roleService.getRoles()));
+        return ResponseEntity.ok(new ApiResponse<Object>(HttpStatus.OK,ROLES+RETRIVED_MESSAGE,roleService.getRoles()));
     }
 
     @GetMapping("/{roleId}")

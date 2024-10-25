@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import static com.pradip.collection_management.MessageConstants.*;
+import static com.pradip.collection_management.constant.MessageConstants.*;
 
 @RestController
 @RequestMapping("/api/v1/permissions")
@@ -19,7 +19,7 @@ public class PermissionController {
 
     @GetMapping
     public ResponseEntity<ApiResponse<Object>> getPermissions() {
-        return ResponseEntity.ok(new ApiResponse<Object>(HttpStatus.OK,PERMISSIONS+CREATED_MESSAGE,permissionService.getPermissions()));
+        return ResponseEntity.ok(new ApiResponse<Object>(HttpStatus.OK,PERMISSIONS+RETRIVED_MESSAGE,permissionService.getPermissions()));
     }
 
     @GetMapping("/{permissionId}")

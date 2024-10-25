@@ -2,7 +2,10 @@ package com.pradip.collection_management.audit;
 
 import com.pradip.collection_management.model.User;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.MappedSuperclass;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -13,13 +16,16 @@ import java.time.LocalDateTime;
 
 @Data
 @EntityListeners(AuditingEntityListener.class)
-public class Auditable {
+@AllArgsConstructor
+@NoArgsConstructor
+@MappedSuperclass
+public class Auditable<U> {
 
     @CreatedBy
-    private User createdBy;
+    private U createdBy;
 
     @LastModifiedBy
-    private LocalDateTime lastModifiedBy;
+    private U lastModifiedBy;
 
     @CreatedDate
     private LocalDateTime createdDate;

@@ -1,4 +1,4 @@
-package com.pradip.collection_management;
+package com.pradip.collection_management.constant;
 
 public class MessageConstants {
     public static final String RETRIVED_MESSAGE = " retrieved successfully";
@@ -10,8 +10,8 @@ public class MessageConstants {
     public static final String USERS = USER + "s";
 
     public static final String ROLE = "Role";
-    public static final String ROLES = USER + "s";
+    public static final String ROLES = ROLE + "s";
 
     public static final String PERMISSION = "Permission";
-    public static final String PERMISSIONS = USER + "s";
+    public static final String PERMISSIONS = PERMISSION + "s";
 }

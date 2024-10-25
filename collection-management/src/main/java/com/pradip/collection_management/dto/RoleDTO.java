@@ -10,7 +10,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoleDTO {
+public class RoleDTO extends AuditableDTO<String>{
     private Long id;
     private String name;
     private String description;

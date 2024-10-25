@@ -2,16 +2,13 @@ package com.pradip.collection_management.controller;
 
 import com.pradip.collection_management.dto.ApiResponse;
 import com.pradip.collection_management.dto.UserDTO;
-import com.pradip.collection_management.model.User;
 import com.pradip.collection_management.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-import static com.pradip.collection_management.MessageConstants.*;
+import static com.pradip.collection_management.constant.MessageConstants.*;
 
 @RestController
 @RequestMapping("/api/v1/users")

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PermissionDTO {
+public class PermissionDTO extends AuditableDTO<String> {
     private Long id;
     private String name;
     private String description;

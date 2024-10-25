@@ -1,5 +1,6 @@
 package com.pradip.collection_management.model;
 
+import com.pradip.collection_management.audit.Auditable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Permission {
+public class Permission extends Auditable<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,5 +25,4 @@ public class Permission {
     private String resource;
 
     private String action;
-
 }

@@ -1,5 +1,9 @@
 package com.pradip.collection_management.config;
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.servers.Server;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,5 +32,18 @@ public class GeneralConfig {
 
             return Optional.of("Pradip Chavda");
         };
+    }
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title("Collection Management APIs")
+                        .version("1.0")
+                        .description("In this project, we are having User, Role and Permission CRUD.")
+                        .contact(new Contact()
+                                .name("Pradip Chavda")
+                                .email("pradip@gmail.com")))
+                .addServersItem(new Server().url("/").description("Default Server URL"));
     }
 }

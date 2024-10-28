@@ -1,6 +1,6 @@
 package com.pradip.collection_management.controller;
 
-import com.pradip.collection_management.dto.ApiResponse;
+import com.pradip.collection_management.dto.ApiResponseDTO;
 import com.pradip.collection_management.dto.PermissionDTO;
 import com.pradip.collection_management.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,28 +18,28 @@ public class PermissionController {
     private PermissionService permissionService;
 
     @GetMapping
-    public ResponseEntity<ApiResponse<Object>> getPermissions() {
-        return ResponseEntity.ok(new ApiResponse<Object>(HttpStatus.OK,PERMISSIONS+RETRIVED_MESSAGE,permissionService.getPermissions()));
+    public ResponseEntity<ApiResponseDTO<Object>> getPermissions() {
+        return ResponseEntity.ok(new ApiResponseDTO<Object>(HttpStatus.OK,PERMISSIONS+RETRIVED_MESSAGE,permissionService.getPermissions()));
     }
 
     @GetMapping("/{permissionId}")
-    public ResponseEntity<ApiResponse<PermissionDTO>> getPermission(@PathVariable long permissionId) {
-        return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK,PERMISSION+RETRIVED_MESSAGE,permissionService.getPermission(permissionId)));
+    public ResponseEntity<ApiResponseDTO<PermissionDTO>> getPermission(@PathVariable long permissionId) {
+        return ResponseEntity.ok(new ApiResponseDTO<>(HttpStatus.OK,PERMISSION+RETRIVED_MESSAGE,permissionService.getPermission(permissionId)));
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponse<PermissionDTO>> createPermission(@RequestBody PermissionDTO permissionDTO) {
-        return ResponseEntity.ok(new ApiResponse<>(HttpStatus.CREATED,PERMISSION+CREATED_MESSAGE,permissionService.createPermission(permissionDTO)));
+    public ResponseEntity<ApiResponseDTO<PermissionDTO>> createPermission(@RequestBody PermissionDTO permissionDTO) {
+        return ResponseEntity.ok(new ApiResponseDTO<>(HttpStatus.CREATED,PERMISSION+CREATED_MESSAGE,permissionService.createPermission(permissionDTO)));
     }
 
     @PutMapping("/{permissionId}")
-    public ResponseEntity<ApiResponse<PermissionDTO>> updatePermission(@RequestBody PermissionDTO permissionDTO, @PathVariable Long permissionId) throws Exception {
+    public ResponseEntity<ApiResponseDTO<PermissionDTO>> updatePermission(@RequestBody PermissionDTO permissionDTO, @PathVariable Long permissionId) throws Exception {
         permissionDTO.setId(permissionId);
-        return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK,PERMISSION+UPDATED_MESSAGE,permissionService.updatePermission(permissionDTO)));
+        return ResponseEntity.ok(new ApiResponseDTO<>(HttpStatus.OK,PERMISSION+UPDATED_MESSAGE,permissionService.updatePermission(permissionDTO)));
     }
 
     @DeleteMapping("/{permissionId}")
-    public ResponseEntity<ApiResponse<PermissionDTO>> deletePermission(long permissionId) {
-        return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK,PERMISSION+DELETED_MESSAGE,permissionService.deletePermission(permissionId)));
+    public ResponseEntity<ApiResponseDTO<PermissionDTO>> deletePermission(long permissionId) {
+        return ResponseEntity.ok(new ApiResponseDTO<>(HttpStatus.OK,PERMISSION+DELETED_MESSAGE,permissionService.deletePermission(permissionId)));
     }
 }
